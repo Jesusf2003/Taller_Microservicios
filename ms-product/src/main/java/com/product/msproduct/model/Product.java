@@ -1,24 +1,42 @@
 package com.product.msproduct.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.math.BigDecimal;
 
-@Document(collection = "product")
+import javax.persistence.*;
+
+@Entity
+@Table(name = "product")
 public class Product {
 
     @Id
-    private String id;
-    private String name;
-    private Integer stock;
-    private BigDecimal price;
+    @Column(name = "product_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    public String getId() {
+    @Column(name = "product_name")
+    private String name;
+    
+    @Column(name = "product_stock")
+    private Integer stock;
+    
+    @Column(name = "product_price")
+    private BigDecimal price;
+    
+    public Product() {
+    }
+
+    public Product(Long id, String name, Integer stock, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.stock = stock;
+        this.price = price;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

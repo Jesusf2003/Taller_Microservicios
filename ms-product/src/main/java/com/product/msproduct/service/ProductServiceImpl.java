@@ -1,12 +1,13 @@
 package com.product.msproduct.service;
 
-import com.product.msproduct.model.Product;
-import com.product.msproduct.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
+import com.product.msproduct.model.Product;
+import com.product.msproduct.repository.ProductRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -16,27 +17,30 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findAll() {
-        return productRepository.findAll();
+        
+        return (List<Product>) productRepository.findAll();
     }
 
     @Override
     public Product create(Product product) {
-        // return productRepository.save(product);
-        return null;
+        return productRepository.save(product);
     }
 
     @Override
     public Product update(Product product) {
-        //Optional<Product> optionalProduct = productRepository.findById(product.getId());
-        //if (!optionalProduct.isPresent()) throw new RuntimeException("No se encontro el producto a actualizar");
-        //return productRepository.save(product);
-        return null;
+        Optional<Product> optionalProduct = productRepository.findById(product.getId());
+        if (!optionalProduct.isPresent()) {
+            throw new RuntimeException("No se encontró el producto a actualizar");
+        }
+        return productRepository.save(product);
     }
 
     @Override
-    public void delete(String id) {
-        //Optional<Product> optionalProduct = productRepository.findById(id);
-        //if (!optionalProduct.isPresent()) throw new RuntimeException("No se encontro el producto a eliminar");
-        //productRepository.deleteById(id);
+    public void delete(Long id) {
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (!optionalProduct.isPresent()) {
+            throw new RuntimeException("No se encontró el producto a actualizar");
+        }
+        productRepository.deleteById(id);
     }
 }

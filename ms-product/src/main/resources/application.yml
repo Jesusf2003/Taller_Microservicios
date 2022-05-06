@@ -1,0 +1,10 @@
+server:
+  port: 9001
+
+spring:
+  config:
+    name: ms-product
+  datasource:
+    url: jdbc:postgresql://localhost:5432/DBDemo
+    username: postgres
+    password: pgsql1234
