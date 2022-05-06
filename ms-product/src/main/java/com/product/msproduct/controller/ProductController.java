@@ -23,16 +23,18 @@ public class ProductController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Product create(@RequestBody Product product){
-        return productService.create(product);
+        // return productService.create(product);
+        return null;
     }
 
     @PutMapping
     public Product update(@RequestBody Product product) {
-        return productService.update(product);
+        // return productService.update(product);
+        return null;
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable String id){
-        productService.delete(id);
+        // productService.delete(id);
     }
 }

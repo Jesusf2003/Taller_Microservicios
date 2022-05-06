@@ -21,20 +21,22 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(Product product) {
-        return productRepository.save(product);
+        // return productRepository.save(product);
+        return null;
     }
 
     @Override
     public Product update(Product product) {
-        Optional<Product> optionalProduct = productRepository.findById(product.getId());
-        if (!optionalProduct.isPresent()) throw new RuntimeException("No se encontro el producto a actualizar");
-        return productRepository.save(product);
+        //Optional<Product> optionalProduct = productRepository.findById(product.getId());
+        //if (!optionalProduct.isPresent()) throw new RuntimeException("No se encontro el producto a actualizar");
+        //return productRepository.save(product);
+        return null;
     }
 
     @Override
     public void delete(String id) {
-        Optional<Product> optionalProduct = productRepository.findById(id);
-        if (!optionalProduct.isPresent()) throw new RuntimeException("No se encontro el producto a eliminar");
-        productRepository.deleteById(id);
+        //Optional<Product> optionalProduct = productRepository.findById(id);
+        //if (!optionalProduct.isPresent()) throw new RuntimeException("No se encontro el producto a eliminar");
+        //productRepository.deleteById(id);
     }
 }
