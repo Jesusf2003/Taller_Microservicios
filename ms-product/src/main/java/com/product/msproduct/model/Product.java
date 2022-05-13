@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Product {
 
     @Id
-    @Column(name = "product_id")
+    @Column(name = "product_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

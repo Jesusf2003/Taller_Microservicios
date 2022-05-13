@@ -1,13 +1,13 @@
-package com.payment.mspayment;
+package com.certificate.mscertificate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsPaymentApplication {
+public class MsCertificateApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MsPaymentApplication.class, args);
+        SpringApplication.run(MsCertificateApplication.class, args);
     }
 
 }

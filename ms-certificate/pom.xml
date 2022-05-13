@@ -8,11 +8,11 @@
         <version>2.6.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.payment</groupId>
-    <artifactId>ms-payment</artifactId>
+    <groupId>com.certificate</groupId>
+    <artifactId>ms-certificate</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ms-payment</name>
-    <description>ms-payment</description>
+    <name>ms-certificate</name>
+    <description>ms-certificate</description>
     <properties>
         <java.version>11</java.version>
     </properties>

@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 9001
 
 spring:
   config:
-    name: ms-product
+    name: ms-procedure
   datasource:
     driver-class-name: org.postgresql.Driver
     url: <url>
