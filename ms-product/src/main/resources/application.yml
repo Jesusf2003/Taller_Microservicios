@@ -6,6 +6,6 @@ spring:
     name: ms-product
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://ec2-52-4-104-184.compute-1.amazonaws.com:5432/deqre8cmt9ev0q
-    username: recspeeuhrjfgi
-    password: 323055b86fe54df3188f0a82e5fb8609667b1f5c0de5c40f9fd6e9f78059f31b
+    url: <url>
+    username: <username>
+    password: <password>

@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Long id) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (!optionalProduct.isPresent()) {
-            throw new RuntimeException("No se encontró el producto a actualizar");
+            throw new RuntimeException("No se encontró el producto a eliminar");
         }
         productRepository.deleteById(id);
     }

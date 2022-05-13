@@ -6,4 +6,4 @@
 - apache Maven 3.8.1
 - Spring Boot 2.6.1
 - Java 11
-- PostgreSQL
+- PostgreSQL en Heroku
