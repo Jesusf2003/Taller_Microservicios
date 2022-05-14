@@ -1,7 +1,6 @@
 package com.payment.mspayment.infraestructure;
 
 import com.payment.mspayment.domain.Payment;
-import com.payment.mspayment.domain.PaymentRepository;
 
 import java.util.List;
 

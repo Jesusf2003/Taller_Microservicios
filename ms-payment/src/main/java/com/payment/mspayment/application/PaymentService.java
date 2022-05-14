@@ -31,7 +31,7 @@ public class PaymentService implements PaymentPSQL {
 
     @Override
     public Payment update(Payment payment) {
-        Optional<Payment> optionalPayment = paymentRepository.findById(payment.getId());
+        Optional<Payment> optionalPayment = paymentRepository.findById(payment.getPayment_id());
         if (!optionalPayment.isPresent()) {
             throw new RuntimeException("No se encontró el pago a actualizar");
         }

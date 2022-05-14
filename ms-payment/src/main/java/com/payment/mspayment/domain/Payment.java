@@ -9,7 +9,7 @@ public class Payment {
     @Id
     @Column(name = "payment_id", columnDefinition = "serial")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long payment_id;
 
     @Column(name = "payment_cnumber")
     private String card_number;
@@ -26,20 +26,20 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(Long id, String card_number, String card_name, String expiry_date, String security_code) {
-        this.id = id;
+    public Payment(Long payment_id, String card_number, String card_name, String expiry_date, String security_code) {
+        this.payment_id = payment_id;
         this.card_number = card_number;
         this.card_name = card_name;
         this.expiry_date = expiry_date;
         this.security_code = security_code;
     }
 
-    public Long getId() {
-        return id;
+    public Long getPayment_id() {
+        return payment_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPayment_id(Long payment_id) {
+        this.payment_id = payment_id;
     }
 
     public String getCard_number() {
