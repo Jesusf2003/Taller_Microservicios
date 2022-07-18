@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProductHystrixFallbackFactory implements ProductClient {
-
+	
 	@Override
 	public Product findProductById(String id) {
 		Product product = new Product();

@@ -106,3 +106,11 @@ Seguir los siguientes pasos:
 
 
 - Probar los servicios.
+
+
+## Bibliografía
+
+- __[ Error leyendo Prometheus: ](https://github.com/grafana/grafana/issues/46434)__
+
+
+- __[Setup Grafana for Spring Boot app](https://www.youtube.com/watch?v=gJZhdEJvZmc)__

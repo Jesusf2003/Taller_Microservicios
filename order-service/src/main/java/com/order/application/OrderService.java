@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.order.domain.Order;
+import com.order.domain.Payment;
+import com.order.domain.Product;
 
 public interface OrderService {
 
@@ -16,4 +18,8 @@ public interface OrderService {
 	void update(Order order);
 
 	void delete(String id);
+	
+	Product findProductById(String id);
+	
+	Payment findPaymentById(String id);
 }

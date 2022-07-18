@@ -7,7 +7,6 @@ import com.order.application.OrderService;
 import com.order.domain.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
@@ -17,9 +16,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderController {
 
-	private final OrderService service;
-	private ProductClient clientProduct;
-	private PaymentClient clientPayment;
+	@Autowired
+	private OrderService service;
 	
 	@GetMapping
 	public List<Order> findAll() {
@@ -31,11 +29,11 @@ public class OrderController {
 		return this.service.findOrderById(id);
 	}
 	
-	@PostMapping("/save")
+	@PostMapping
 	public Order save(@RequestBody Order order) {
 		
-		Product product = clientProduct.findProductById(order.getProduct().getId());
-		Payment payment = clientPayment.findPaymentById(order.getPayment().getId());
+		Product product = service.findProductById(order.getProduct().getId());
+		Payment payment = service.findPaymentById(order.getPayment().getId());
 		
 		System.out.println(product.toString());
 		System.out.println(payment.toString());
@@ -48,12 +46,12 @@ public class OrderController {
 	
 	@GetMapping("/product/id/{id}")
 	private Product traerProduct(@PathVariable("id") String id) {
-		return clientProduct.findProductById(id);
+		return service.findProductById(id);
 	}
 	
 	@GetMapping("/payment/id/{id}")
 	private Payment traerPayment(@PathVariable("id") String id) {
-		return clientPayment.findPaymentById(id);
+		return service.findPaymentById(id);
 	}
 	
 	@PutMapping
