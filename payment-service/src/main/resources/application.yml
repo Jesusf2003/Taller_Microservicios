@@ -1,13 +1,27 @@
 server:
    port: 9002
-
 spring:
    application:
       name: payment-service
    data:
       mongodb:
          uri: mongodb://localhost:27017/taller1
-
+management:
+   metrics:
+      export:
+         prometheus:
+            enabled: true
+   endpoint:
+      prometheus:
+         enabled: true
+      health:
+         show-details: always
+      metrics:
+         enabled: true
+   endpoints:
+      web:
+         exposure:
+            include: '*'
 eureka:
    client:
       serviceUrl:
