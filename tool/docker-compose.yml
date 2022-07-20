@@ -1,18 +1,119 @@
 services:
+   elasticsearch:
+      container_name: elasticsearch
+      image: docker.elastic.co/elasticsearch/elasticsearch:7.14.2
+      restart: always
+      ports:
+      - 9200:9200
+      - 9300:9300
+      volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - elasticsearch:/usr/share/elasticsearch/data
+      environment:
+         bootstrap.memory_lock: true
+         ELASTIC_PASSWORD: elastic123
+         discovery.type: single-node
+         ES_JAVA_OPTS: -Xmx256m -Xms256m
+   logstash:
+      build:
+         context: ./logstash
+      container_name: logstash
+      image: logstash:7.14.2
+      volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      ports:
+      - 5044:5044
+      - 9600:9600
+      environment:
+         LS_JAVA_OPTS: -Xmx256m -Xms256m
+      depends_on:
+      - elasticsearch
+   kibana:
+      container_name: kibana
+      image: docker.elastic.co/kibana/kibana:7.14.2
+      volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+      restart: always
+      ports:
+      - 5601:5601
+      depends_on:
+      - elasticsearch
    prometheus:
       container_name: prometheus
       image: prom/prometheus:latest
       restart: unless-stopped
       command:
-         - '--config.file=/etc/prometheus/prometheus.yml'
+      - --config.file=/etc/prometheus/prometheus.yml
       volumes:
-         - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       ports:
-         - 9090:9090
+      - 9090:9090
+   rabbitmq:
+      container_name: rabbitmq
+      image: rabbitmq:management-alpine
+      environment:
+      - RABBITMQ_DEFAULT_USER=vg
+      - RABBITMQ_DEFAULT_PASS=vg123
+      ports:
+      - 5672:5672
+      - 15672:15672
    grafana:
       container_name: grafana
       image: grafana/grafana:latest
       ports:
-         - 3000:3000
+      - 3000:3000
       depends_on:
-         - prometheus
+      - prometheus
+   jaeger-collector:
+      container_name: jaeger-collector
+      image: jaegertracing/jaeger-collector
+      environment:
+      - SPAN_STORAGE_TYPE=elasticsearch
+      - ES_VERSION=7.14.2
+      command:
+      - --es.server-urls=http://elasticsearch:9200
+      - --es.username=elastic
+      - --es.password=elastic123
+      - --es.num-shards=1
+      - --es.num-replicas=0
+      - --log-level=info
+      ports:
+      - 14269:14269
+      - 14268:14268
+      - 14267:14267
+      - 9411:9411
+   jaeger-agent:
+      container_name: "jaeger-agent"
+      image: jaegertracing/jaeger-agent
+      hostname: jaeger-agent
+      command: ["--collector.host-port=jaeger-collector:14267"]
+      ports:
+         - "5775:5775/udp"
+         - "6831:6831/udp"
+         - "6832:6832/udp"
+         - "5778:5778"
+      environment:
+         - SPAN_STORAGE_TYPE=elasticsearch
+   jaeger-query:
+      container_name: "jaeger-query"
+      image: jaegertracing/jaeger-query
+      environment:
+      - SPAN_STORAGE_TYPE=elasticsearch
+      - no_proxy=localhost
+      ports:
+      - 16686:16686
+      - 16687:16687
+      command:
+      - --es.server-urls=http://elasticsearch:9200
+      - --es.username=elastic
+      - --es.password=elastic123
+      - --span-storage.type=elasticsearch
+      - --log-level=debug
+      depends_on:
+      - jaeger-agent
+volumes:
+   elasticsearch: null
+   rabbitmq-lib: null
+   prometheus_data: null
+   grafana_data: null

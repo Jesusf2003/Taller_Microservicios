@@ -1,0 +1,27 @@
+{
+	"data": [
+		[
+			{
+				"id": "1",
+				"cnumber": "XXX-XXX-XXX",
+				"cname": "MasterCard",
+				"vdate": "10/5/2021",
+				"secode": "XXXXXXXXX"
+			},
+			{
+				"id": "2",
+				"cnumber": "XXX-XXX-XXX",
+				"cname": "Visa",
+				"vdate": "10/5/2021",
+				"secode": "XXXXXXXXX"
+			},
+			{
+				"id": "3",
+				"cnumber": "XXX-XXX-XXX",
+				"cname": "BBVA",
+				"vdate": "10/5/2021",
+				"secode": "XXXXXXXXX"
+			}
+		]
+	]
+}

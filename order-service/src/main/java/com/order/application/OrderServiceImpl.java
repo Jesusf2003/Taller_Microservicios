@@ -5,16 +5,21 @@ import java.util.Optional;
 
 import com.order.domain.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
+	private static final Logger log = LoggerFactory.getLogger("outbound-logs");
+	
 	@Autowired
 	private OrderRepository repository;
 	
@@ -58,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
 		Product optProduct = cliProd.findProductById(id);
 		
 		if (optProduct == null) {
-			System.out.println("No se pudo encontrar el producto");
+			log.error("No se pudo encontrar el producto");
 			return null;
 		}
 		
@@ -71,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
 		Payment optPayment = cliPay.findPaymentById(id);
 		
 		if(optPayment == null) {
-			System.out.println("No se pudo encontrar el pago");
+			log.error("No se pudo encontrar el pago");
 			return null;
 		}
 		return optPayment;

@@ -1,13 +1,16 @@
 package com.payment.application;
 
+import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import com.payment.domain.Payment;
-import com.payment.domain.PaymentRepository;
+import org.json.simple.*;
+import com.payment.domain.*;
 
+import org.json.simple.parser.JSONParser;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -16,6 +19,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PaymentService {
 
+	private static final Logger log = LoggerFactory.getLogger(PaymentService.class);
+	
 	@Autowired
 	private PaymentRepository repository;
 	
