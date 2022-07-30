@@ -87,7 +87,7 @@ services:
       container_name: "jaeger-agent"
       image: jaegertracing/jaeger-agent
       hostname: jaeger-agent
-      command: ["--collector.host-port=jaeger-collector:14267"]
+      command: ["--collector.host-port=jaeger-collector:14267", "--reporter.grpc.retry.max=1000"]
       ports:
          - "5775:5775/udp"
          - "6831:6831/udp"
@@ -95,6 +95,8 @@ services:
          - "5778:5778"
       environment:
          - SPAN_STORAGE_TYPE=elasticsearch
+      depends_on:
+         - jaeger-collector
    jaeger-query:
       container_name: "jaeger-query"
       image: jaegertracing/jaeger-query

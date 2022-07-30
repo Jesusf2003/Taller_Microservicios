@@ -6,12 +6,18 @@ spring:
    data:
       mongodb:
          uri: mongodb://localhost:27017/taller1
-# Output to a file named application.log.
 logging:
    file:
       name: application.log
 management:
    metrics:
+      distribution:
+         percentiles-histogram:
+            http:
+               server:
+                  requests: true
+               client:
+                  requests: true
       export:
          prometheus:
             enabled: true
