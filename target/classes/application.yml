@@ -1,9 +1,0 @@
-server:
-  port: 9091
-
-spring:
-  application:
-    name: certificate-service
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/devops
