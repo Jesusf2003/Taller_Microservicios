@@ -1,0 +1,14 @@
+services:
+  sonarqube:
+    restart: unless-stopped
+    container_name: "sonarqube-devops"
+    build: ./sonar
+    volumes:
+      - /tmp/opt/sonarqube/conf:/opt/sonarqube/conf \
+      - /tmp/opt/sonarqube/logs:/opt/sonarqube/data \
+      - /tmp/opt/sonarqube/data:/opt/sonarqube/logs \
+      - /tmp/opt/sonarqube/extensions:/opt/sonarqube/extensions \
+    expose:
+      - 9000
+    ports:
+      - "9000:9000"

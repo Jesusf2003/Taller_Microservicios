@@ -1,0 +1,5 @@
+name: sonarqube-github
+on:
+  push:
+    branches:
+      - github_actions
