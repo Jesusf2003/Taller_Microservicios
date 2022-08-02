@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CertificateServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">certificate-ms</a> &gt; <a href="index.source.html" class="el_package">com.certificate.infraestructure</a> &gt; <span class="el_source">CertificateServiceImpl.java</span></div><h1>CertificateServiceImpl.java</h1><pre class="source lang-java linenums">package com.certificate.infraestructure;
+
+import java.util.List;
+
+import com.certificate.domain.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.*;
+import org.springframework.stereotype.Repository;
+
+import lombok.AllArgsConstructor;
+
+@Repository
+<span class="fc" id="L15">@AllArgsConstructor</span>
+public class CertificateServiceImpl implements CertificateRepository {
+	
+	@Autowired
+	private final MongoOperations operations;
+
+	@Override
+	public List&lt;Certificate&gt; findAll() {
+<span class="nc" id="L23">		return this.operations.findAll(Certificate.class);</span>
+	}
+
+	@Override
+	public Certificate findCertificateById(String id) {
+<span class="nc" id="L28">		return this.operations.findById(new Query(Criteria.where(&quot;id&quot;).is(id)), Certificate.class);</span>
+	}
+
+	@Override
+	public Certificate create(Certificate data) {
+<span class="nc" id="L33">		return this.operations.save(data);</span>
+	}
+
+	@Override
+	public void update(Certificate data) {
+<span class="nc" id="L38">		this.operations.save(data);</span>
+<span class="nc" id="L39">	}</span>
+
+	@Override
+	public void delete(String data) {
+<span class="nc" id="L43">		this.operations.findAndRemove(new Query(Criteria.where(&quot;id&quot;).is(data)), Certificate.class);</span>
+<span class="nc" id="L44">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

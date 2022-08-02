@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CertificateRest.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">certificate-ms</a> &gt; <a href="index.source.html" class="el_package">com.certificate.rest</a> &gt; <span class="el_source">CertificateRest.java</span></div><h1>CertificateRest.java</h1><pre class="source lang-java linenums">package com.certificate.rest;
+
+import java.util.List;
+
+import com.certificate.application.CertificateService;
+import com.certificate.domain.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(&quot;/certificate&quot;)
+<span class="fc" id="L14">public class CertificateRest {</span>
+
+	private CertificateRepository repository;
+<span class="fc" id="L17">	@Autowired</span>
+	private CertificateService service = new CertificateService(repository);
+	
+	@GetMapping
+	public List&lt;Certificate&gt; findAll() {
+<span class="nc" id="L22">		return this.service.findAll();</span>
+	}
+	
+	@GetMapping(&quot;/id/{id}&quot;)
+	public Certificate findById(@PathVariable String id) {
+<span class="nc" id="L27">		return this.service.findCertificateById(id);</span>
+	}
+	
+	@PostMapping
+	public Certificate save(@RequestBody Certificate data) {
+<span class="nc" id="L32">		return this.service.create(data);</span>
+	}
+	
+	@PutMapping
+	public ResponseEntity&lt;?&gt; update(@RequestBody Certificate data) {
+<span class="nc" id="L37">		return this.service.update(data);</span>
+	}
+	
+	@DeleteMapping(&quot;/id/{id}&quot;)
+	public ResponseEntity&lt;?&gt; delete(@PathVariable String id) {
+<span class="nc" id="L42">		return this.service.delete(id);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

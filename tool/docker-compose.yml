@@ -4,11 +4,16 @@ services:
     container_name: "sonarqube-devops"
     build: ./sonar
     volumes:
-      - /tmp/opt/sonarqube/conf:/opt/sonarqube/conf \
-      - /tmp/opt/sonarqube/logs:/opt/sonarqube/data \
-      - /tmp/opt/sonarqube/data:/opt/sonarqube/logs \
-      - /tmp/opt/sonarqube/extensions:/opt/sonarqube/extensions \
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
     expose:
       - 9000
     ports:
       - "9000:9000"
+volumes:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:

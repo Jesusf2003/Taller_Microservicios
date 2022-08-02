@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+certificate-ms,com.certificate.infraestructure,CertificateServiceImpl,43,6,0,0,7,1,5,1,5,1
+certificate-ms,com.certificate.domain,Certificate,316,0,54,0,8,0,44,0,17,0
+certificate-ms,com.certificate,CertificateMsApplication,5,3,0,0,2,1,1,1,1,1
+certificate-ms,com.certificate.application,CertificateService,34,6,0,0,7,1,5,1,5,1
+certificate-ms,com.certificate.rest,CertificateRest,24,10,0,0,5,2,5,1,5,1

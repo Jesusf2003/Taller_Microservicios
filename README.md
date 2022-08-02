@@ -8,3 +8,11 @@
 - Iniciar el servicio desde un **IDE de preferencia**.
 
 ## Bibliografía
+
+- __[Youtube - Cómo instalar SonarQube en Docker Containers](https://www.youtube.com/watch?v=gAcvCHMP1IM)__
+
+
+- __[Github - quality-measurement](https://github.com/tasdemirbahadir/quality-measurement)__
+
+
+- __[Linkedin - sonarQube & Jacoco configuration with SpringBoot and Maven/Gradle]()__

@@ -1,0 +1,6 @@
+com\certificate\domain\CertificateRepository.class
+com\certificate\domain\Certificate.class
+com\certificate\rest\CertificateRest.class
+com\certificate\CertificateMsApplication.class
+com\certificate\infraestructure\CertificateServiceImpl.class
+com\certificate\application\CertificateService.class
